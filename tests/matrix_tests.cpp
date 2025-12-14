@@ -7,10 +7,6 @@ protected:
     void TearDown() {};
 };
 
-TEST_F(TestMatrix, Default1) {
-    ASSERT_TRUE(true);
-}
-
-TEST_F(TestMatrix, Default2) {
+TEST_F(TestMatrix, Default) {
     ASSERT_TRUE(true);
 }
