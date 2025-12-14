@@ -9,3 +9,5 @@ function(add_proj_test target)
     target_link_libraries(${target} PRIVATE GTest::gtest_main)
     gtest_discover_tests(${target})
 endfunction()
+
+add_proj_test(matrix_tests ${TESTS_DIR} / matrix_tests.cpp)
