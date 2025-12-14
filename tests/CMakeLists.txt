@@ -1,0 +1,21 @@
+enable_testing() 
+find_package(GTest REQUIRED) 
+include(GoogleTest)
+
+set(LFUC_SRC ${CMAKE_CURRENT_SOURCE_DIR} / lfuc_tests.cpp) 
+set(PC_SRC ${CMAKE_CURRENT_SOURCE_DIR} / pc_tests.cpp)
+
+function(add_proj_test target) 
+    add_executable(${target} ${ARGN})
+    target_include_directories(${target} PRIVATE ${INCLUDE_DIR})
+    target_compile_features(${target} PRIVATE cxx_std_20)
+    target_link_libraries(${target} PRIVATE GTest::gtest_main)
+    gtest_discover_tests(${target})
+endfunction()
+
+add_proj_test(line_tests ${TESTS_DIR} / line_tests.cpp)
+add_proj_test(point_tests ${TESTS_DIR} / point_tests.cpp)
+add_proj_test(vector_tests ${TESTS_DIR} / vector_tests.cpp)
+add_proj_test(plane_tests ${TESTS_DIR} / plane_tests.cpp)
+add_proj_test(triangles_tests ${TESTS_DIR} / triangles_tests.cpp)
+add_proj_test(octo_tree_tests ${TESTS_DIR} / octo_tree_tests.cpp)
