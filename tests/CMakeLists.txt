@@ -11,3 +11,4 @@ function(add_proj_test target)
 endfunction()
 
 add_proj_test(matrix_tests ${TESTS_DIR} / matrix_tests.cpp)
+add_proj_test(array_tests ${TESTS_DIR} / array_tests.cpp)

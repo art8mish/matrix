@@ -34,4 +34,4 @@ function(add_warnings target)
     )
 endfunction()
 
-add_exec(matrix ${SRC_DIR}/matrix.cpp)
+add_exec(matrix ${SRC_DIR}/main.cpp)
