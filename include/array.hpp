@@ -49,7 +49,7 @@ private:
     }
 
 public:
-    explicit Array(std::initializer_list<T> init) 
+    Array(std::initializer_list<T> init) 
         : Array(init.size(), init.begin(), init.end()) {}
 
     template <typename It> Array(It begin, It end) 
