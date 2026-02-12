@@ -28,12 +28,11 @@ int main() {
 #ifndef NDEBUG
         auto duration = std::clock() - start_time;
 #endif
-        std::cout << det << "\n";
+        std::cout << det << std::endl;
 
 #ifndef NDEBUG
-        std::cout << "runtime: " << duration << " us\n";
+        std::cout << "\nRuntime: " << duration << " us" << std::endl;
 #endif
-        std::cout << std::endl;
         return 0;
     } catch (const std::invalid_argument &e) {
         std::cout << "Invalid argument: " << e.what() << std::endl;
