@@ -14,12 +14,10 @@ function(add_exec target)
     add_executable(${target} ${ARGN})
     target_include_directories(${target} PRIVATE ${INCLUDE_DIR})
     target_compile_features(${target} PRIVATE cxx_std_20)
-    add_warnings(${target})
 endfunction()
 
-
 function(add_warnings target)
-    target_compile_options(${target} PRIVATE
+    target_compile_options(${target} PRIVATE 
         -Werror
         -Wall
         -Wextra
@@ -35,3 +33,6 @@ function(add_warnings target)
 endfunction()
 
 add_exec(matrix ${SRC_DIR}/main.cpp)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_warnings(matrix)
+endif()
