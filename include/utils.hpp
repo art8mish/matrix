@@ -11,4 +11,4 @@ template <std::floating_point T> T epsilon() {
     else
         return 1e-6f;
 }
-} // namespace matrix 
+} // namespace matrix

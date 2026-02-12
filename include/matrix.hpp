@@ -2,10 +2,10 @@
 
 #include "array.hpp"
 #include "utils.hpp"
+#include <cassert>
 #include <concepts> // requires
 #include <iostream>
 #include <type_traits>
-#include <cassert>
 
 namespace matrix {
 
@@ -79,7 +79,7 @@ class Matrix {
                 if (is_zero(matrix[row][col], eps))
                     continue;
 
-                double coef = matrix[row][col] / matrix[col][col];                
+                double coef = matrix[row][col] / matrix[col][col];
                 for (size_t k = 0; k < cols_; ++k)
                     matrix[row][k] -= coef * matrix[col][k];
             }
@@ -91,7 +91,7 @@ class Matrix {
     T integral_determinant() const {
         assert(rows_ == cols_ && rows_ > 1);
         static_assert(std::is_integral_v<T>, "Integral determinant requieres integral type");
-        
+
         Array<Array<T>> matrix = matrix_;
         T sign = 1;
         T minor_k_prev = 1;
@@ -102,15 +102,15 @@ class Matrix {
                 if (std::abs(matrix[row][k]) > std::abs(matrix[max_val_row][k]))
                     max_val_row = row;
             }
-            
+
             if (matrix[max_val_row][k] == 0)
                 return 0;
-            
+
             if (max_val_row != k) {
                 std::swap(matrix[k], matrix[max_val_row]);
                 sign *= -1;
             }
-            
+
             for (size_t row = k + 1; row < rows_; ++row) {
                 for (size_t col = k + 1; col < cols_; ++col) {
                     T minor_k = matrix[k][k] * matrix[row][col] - matrix[row][k] * matrix[k][col];
@@ -126,12 +126,9 @@ class Matrix {
         assert(rows_ == cols_ && rows_ == 3);
 
         auto &m = matrix_;
-        return m[0][0] * m[1][1] * m[2][2] 
-            + m[0][1] * m[1][2] * m[2][0] 
-            + m[0][2] * m[1][0] * m[2][1]
-            - m[0][2] * m[1][1] * m[2][0] 
-            - m[0][1] * m[1][0] * m[2][2] 
-            - m[0][0] * m[1][2] * m[2][1];
+        return m[0][0] * m[1][1] * m[2][2] + m[0][1] * m[1][2] * m[2][0] +
+               m[0][2] * m[1][0] * m[2][1] - m[0][2] * m[1][1] * m[2][0] -
+               m[0][1] * m[1][0] * m[2][2] - m[0][0] * m[1][2] * m[2][1];
     }
 
 public:
