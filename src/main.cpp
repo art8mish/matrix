@@ -29,7 +29,6 @@ int main() {
         auto duration = std::clock() - start_time;
 #endif
         std::cout << det << std::endl;
-
 #ifndef NDEBUG
         std::cout << "\nRuntime: " << duration << " us" << std::endl;
 #endif
